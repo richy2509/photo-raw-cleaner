@@ -1,4 +1,5 @@
 const fs = require('fs');
+var ncp = require('ncp').ncp;
 
 const DEBUG_LEVEL_DEEPEST = 1;
 const DEBUG_LEVEL_MIN = 0;

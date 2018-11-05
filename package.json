@@ -4,9 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^7.0.0",
+    "jest": "^23.6.0",
+    "ncp": "^2.0.0",
+    "rimraf": "latest"
+  }
 }
