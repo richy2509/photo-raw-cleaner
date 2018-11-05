@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 var ncp = require('ncp').ncp;
 
 const DEBUG_LEVEL_DEEPEST = 1;
@@ -50,6 +50,7 @@ fs.readdirSync(path)
     .filter(f => !fs.existsSync(`${path}/${replaceExtension(f, params.photoExtension.value, params.rawFormat.value)}`))
     .forEach(f => {
         logMinimum(`main ==> moving file ${f} to removing folder : ${config.folders.removal(path)}`);
+        fs.moveSync(`${path}/${f}`, `${config.folders.removal(path)}/${f}`);
 });
 
 fs.readdirSync(path)
@@ -58,6 +59,7 @@ fs.readdirSync(path)
     .forEach(f => {
         logMinimum(`main ==> Check if file already exists in the following folder`);
         logMinimum(`main ==> moving file ${f} to keeping folder : ${config.folders.generated(path)}/${params.photoExtension.extName(params.photoExtension.value)}`);
+        fs.moveSync(`${path}/${f}`, `${config.folders.generated(path)}/${params.photoExtension.extName(params.photoExtension.value)}/${f}`);
 });
 
 function replaceExtension(filename, extension, newExtension) {
