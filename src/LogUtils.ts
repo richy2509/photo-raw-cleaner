@@ -4,12 +4,18 @@ function logDeepest(message: string, args: any = ""): void {
     }
 }
 
-function logMinimum(message, args: any = ""): void  {
+function logMinimum(message: string, args: any = ""): void  {
     if (__debugLevel >= __DEBUG_LEVEL_MIN) {
         console.log(message, args);
     }
 }
 
+function logMinimumCallback(callback: () => any): void {
+    if (__debugLevel >= __DEBUG_LEVEL_MIN) {
+        callback();
+    }
+}
+
 module.exports = {
-    logDeepest, logMinimum
+    logDeepest, logMinimum, logMinimumCallback
 };

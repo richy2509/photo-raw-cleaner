@@ -1,23 +1,22 @@
 ///<reference path="Options.ts"/>
 import * as fs from "fs-extra";
 import {extractParameter} from "Options";
-import * as Logger from "LogUtils";
-import {formatPath, extractExtensionName, formatExtension, replaceExtension, createDirIfNot} from "PathUtils";
-import { endsWithAnyCase } from "StringUtils";
+import * as Logger from 'LogUtils';
+import {formatPath, extractExtensionName, formatExtension, replaceExtension, createDirIfNot} from 'PathUtils';
+import { endsWithAnyCase } from 'StringUtils';
 
 global.__DEBUG_LEVEL_DEEPEST = 1;
 global.__DEBUG_LEVEL_MIN = 0;
 
-const config = {
+const config: Configuration = {
     folders: {
         generated: p => `${p}/generated`,
         removal: p => `${p}/generated/to_remove`
     }
 };
 
-
 const params: Parameter = {
-    destination: { position: 1, name: "target", defaultValue: "./images", format: formatPath },
+    destination: { position: 1, name: "target", defaultValue: "./dist/images", format: formatPath },
     photoExtension: { position: 2, name: "extension", defaultValue: "jpg", format: formatExtension, extName: extractExtensionName },
     rawFormat: { position: 3, name: "raw", defaultValue: "nef", format: formatExtension, extName: extractExtensionName },
     debug: { position: 4, name: "debug", defaultValue: 2 }
@@ -49,23 +48,22 @@ createDirIfNot(config.folders.generated(path));
 createDirIfNot(config.folders.generated(path) + "/" + params.photoExtension.extName(params.photoExtension.value));
 createDirIfNot(config.folders.removal(path));
 
-if (params.debug.value >= __DEBUG_LEVEL_DEEPEST) {
-    console.log(`main ==> begin reading ${path}`);
 
-    fs.readdirSync(path).forEach(p => {
-        console.log(`main [ ${path} ] ==> ${p}`);
-    });
+//Logger.logMinimumCallback(fs.readdirSync(path).forEach(p => {
+//    console.log(`main [ ${path} ] ==> ${p}`);
+//}));
 
-    fs.readdirSync(path)
-        .filter((f: string) => endsWithAnyCase(f, params.photoExtension.value))
-        .filter((f: string) => !fs.existsSync(`${path}/${replaceExtension(f, params.photoExtension.value, params.rawFormat.value)}`))
-        .forEach( (f: string) => {
-            Logger.logMinimum(`main ==> moving file ${f} to removing folder : ${config.folders.removal(path)}`);
-            fs.moveSync(`${path}/${f}`, `${config.folders.removal(path)}/${f}`);
-    });
-    console.log(`main ==> end reading ${path}`);
-}
+Logger.logMinimum(`main ==> begin reading ${path}`);
+fs.readdirSync(path)
+    .filter((f: string) => endsWithAnyCase(f, params.photoExtension.value))
+    .filter((f: string) => !fs.existsSync(`${path}/${replaceExtension(f, params.photoExtension.value, params.rawFormat.value)}`))
+    .forEach( (f: string) => {
+        Logger.logMinimum(`main ==> moving file ${f} to removing folder : ${config.folders.removal(path)}`);
+        fs.moveSync(`${path}/${f}`, `${config.folders.removal(path)}/${f}`);
+});
+Logger.logMinimum(`main ==> end reading ${path}`);
 
+Logger.logMinimum(`main ==> begin reading ${path}`);
 fs.readdirSync(path)
     .filter((f: string) => endsWithAnyCase(f, params.photoExtension.value))
     .filter(f => fs.existsSync(`${path}/${replaceExtension(f, params.photoExtension.value, params.rawFormat.value)}`))
@@ -74,3 +72,4 @@ fs.readdirSync(path)
         Logger.logMinimum(`main ==> moving file ${f} to keeping folder : ${config.folders.generated(path)}/${params.photoExtension.extName(params.photoExtension.value)}`);
         fs.moveSync(`${path}/${f}`, `${config.folders.generated(path)}/${params.photoExtension.extName(params.photoExtension.value)}/${f}`);
 });
+Logger.logMinimum(`main ==> end reading ${path}`);

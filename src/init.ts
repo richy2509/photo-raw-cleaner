@@ -1,13 +1,12 @@
-import {fs} from "fs-extra";
-import { rimraf } from "rimraf";
+import * as fs from "fs-extra";
 
-class Initializor {
+export default class Initializor {
 
     static init() {
-        fs.removeSync('./images');
-        fs.copySync('./images_templates', './images');
+        fs.removeSync('./dist/images');
+        fs.copySync('./templates/images', './dist/images');
     }
 
 }
 
-export { Initializor };
+Initializor.init();

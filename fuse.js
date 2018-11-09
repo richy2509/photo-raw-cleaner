@@ -12,11 +12,7 @@ const fuse = FuseBox.init({
     allowSyntheticDefaultImports: true
 });
 
-fuse
-    .bundle("app")
-    .instructions(`> index.ts`)
-    .watch()
-;
-
+fuse.bundle("init").instructions(`> init.ts`).watch();
+fuse.bundle("index").instructions(`> index.ts`).watch();
 
 fuse.run();
