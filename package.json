@@ -4,15 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "dev-server": "node fuse.js",
+    "sample": "node index.js --target=./images/ --extension=JPG --raw=NEF --debug=2"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fs-extra": "^7.0.0",
+    "@types/node": "^10.12.2",
     "jest": "^23.6.0",
     "ncp": "^2.0.0",
     "rimraf": "latest"
+  },
+  "devDependencies": {
+    "fuse-box": "^3.6.0",
+    "fs-extra": "^7.0.0",
+    "prettier": "^1.14.3",
+    "tslib": "^1.9.3",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.1.6",
+    "uglify-js": "^3.4.9"
   }
 }

@@ -1,0 +1,13 @@
+ {
+  "compilerOptions": {
+    "importHelpers": true,
+    "jsx": "react",
+    "jsxFactory": "h",
+    "module": "commonjs",
+    "target": "es2016"
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ]
+}
