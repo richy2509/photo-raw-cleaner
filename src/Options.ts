@@ -1,4 +1,4 @@
-function extractParameter(args, param: ValueParameter): any {
+export function extractParameter(args, param: ValueParameter): any {
     const returnValue = args[param.position + 1]
     && args[param.position + 1].startsWith(`--${param.name}`)
     && args[param.position + 1].split("=").length === 2

@@ -1,12 +1,12 @@
-import * as fs from "fs";
-import * as Logger from "LogUtils";
+import * as fs from "fs-extra";
+import * as Logger from "./LogUtils";
 
 /**
  *
  * @param {string} path
  * @returns {string}
  */
-function formatPath(path: string): string {
+export function formatPath(path: string): string {
     if (path.startsWith('./')) {
         path = path.substring(2);
     }
@@ -21,7 +21,7 @@ function formatPath(path: string): string {
  * @param {string} ext
  * @returns {string}
  */
-function extractExtensionName(ext: string): string {
+export function extractExtensionName(ext: string): string {
     return ext.startsWith(".") ? ext.substr(1) : ext;
 }
 
@@ -30,7 +30,7 @@ function extractExtensionName(ext: string): string {
  * @param {string} ext
  * @returns {string}
  */
-function formatExtension(ext: string): string {
+export function formatExtension(ext: string): string {
     return !ext.startsWith(".") ? `.${ext.toUpperCase()}` : ext.toUpperCase()
 }
 
@@ -38,7 +38,7 @@ function formatExtension(ext: string): string {
  *
  * @param {string} path
  */
-function createDirIfNot(path: string) {
+export function createDirIfNot(path: string) {
 
     if (path.startsWith(".")) { path = path.substr(1); }
 
@@ -51,6 +51,23 @@ function createDirIfNot(path: string) {
     Logger.logDeepest(`CreateDirIfNot ==> Folder already exists, unable to create directory : ${path}`);
 }
 
+
+/**
+ *
+ * @param {string[]} files
+ * @param {string} path
+ * @param {string} outputFolder
+ */
+export function moveFolder(files: string[], path: string, outputFolder: string): void {
+    files
+    .forEach((f: string) => {
+        Logger.logMinimum(`main ==> Check if file already exists in the following folder`);
+        //TODO
+        Logger.logMinimum(`main ==> moving file ${f} to folder : ${outputFolder}`);
+        fs.moveSync(`${path}/${f}`, `${outputFolder}/${f}`);
+    });
+}
+
 /**
  *
  * @param filename
@@ -58,7 +75,7 @@ function createDirIfNot(path: string) {
  * @param newExtension
  * @returns {string}
  */
-function replaceExtension(filename, extension, newExtension) {
+export function replaceExtension(filename, extension, newExtension) {
 
     if (!filename) {
         console.error("Please provide filename in removeExtension parameters");
@@ -77,15 +94,7 @@ function replaceExtension(filename, extension, newExtension) {
 
     const filenameWithoutExtension = filename.substr(0, filename.length - (extension.length)).concat(newExtension);
 
-    Logger.logDeepest(`removeExtension ==> ${filename}, ${extension}, ${newExtension} : ${filenameWithoutExtension}`);
+    Logger.logDeepest(`replaceExtension ==> ${filename}, ${extension}, ${newExtension} : ${filenameWithoutExtension}`);
 
     return filenameWithoutExtension;
 }
-
-module.exports = {
-    formatPath,
-    extractExtensionName,
-    formatExtension,
-    replaceExtension,
-    createDirIfNot
-};

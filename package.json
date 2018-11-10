@@ -17,6 +17,9 @@
     "ncp": "^2.0.0",
     "rimraf": "latest"
   },
+  "init": {
+    "val": "0.1"
+  },
   "devDependencies": {
     "fuse-box": "^3.6.0",
     "fs-extra": "^7.0.0",
