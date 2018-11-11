@@ -13,8 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^10.12.2",
+    "commander": "^2.19.0",
     "jest": "^23.6.0",
     "ncp": "^2.0.0",
+    "puppeteer": "^1.10.0",
     "rimraf": "latest"
   },
   "init": {

@@ -1,9 +1,23 @@
-interface FolderConfiguration {
-    generated: (p: string) => string,
-    removal: (p: string) => string
-    extension: (p: string, ext: string) => string
+import {Command} from "commander";
+
+export interface ICommand extends Command {
+  destination: ICommandOption,
+  extension: ICommandOption,
+  raw: ICommandOption,
+  folder: ICommandOption,
+  debugLevel: ICommandOption
 }
 
-interface Configuration {
-    folders: FolderConfiguration
+export interface ICommandOption {
+  position: number,
+  name: string,
+  value: string,
+  format?: (ext) => string,
+  extName?: (ext) => string
+}
+
+export interface FolderConfiguration {
+  generated: string,
+  removal: string
+  extension: (ext: string) => string
 }
