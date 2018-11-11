@@ -2,7 +2,7 @@ import * as Logger from "../LogUtils";
 import * as fs from "fs";
 import {commander} from "../Configuration";
 import {createDirIfNot} from "../PathUtils";
-import {FolderConfiguration, ICommand} from "../interfaces/Configuration";
+import {IFolderConfiguration, ICommand} from "../interfaces/Configuration";
 import {logError} from "../LogUtils";
 
 export class EnvironmentHandler {
@@ -24,7 +24,7 @@ export class EnvironmentHandler {
 
   }
 
-  static prepareEnvironment(folder: FolderConfiguration) {
+  static prepareEnvironment(folder: IFolderConfiguration) {
     createDirIfNot(
         folder.generated,
         folder.removal,

@@ -13,8 +13,6 @@ global.__DEBUG_LEVEL_MIN = 0;
 // @ts-ignore
 global.__debugLevel = commander.debug.value;
 
-console.log(`Debug level selected is : ${commander.debug.value}`);
-
 EnvironmentHandler.checkMandatoryOptions(<ICommand>commander);
 EnvironmentHandler.checkEnvironment(commander.destination.value);
 EnvironmentHandler.prepareEnvironment(commander.folder);
@@ -24,6 +22,9 @@ const photoRawComponent = new PhotoRawComponent(
     commander.raw.value,
     commander.destination.value
 );
+
 photoRawComponent.displayParameters();
+
 photoRawComponent.removeFiles(commander.folder.removal);
+
 photoRawComponent.keepFiles(commander.folder.extension(commander.extension.extName));

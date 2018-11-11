@@ -88,6 +88,5 @@ export default class PhotoRawComponent {
       return replaceExtension(f, extensionToKeep, extensionToBackup);
     })
     .filter(f => fs.existsSync(`${output}/${f}`))
-
   }
 }

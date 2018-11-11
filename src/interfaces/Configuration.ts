@@ -16,7 +16,7 @@ export interface ICommandOption {
   extName?: (ext) => string
 }
 
-export interface FolderConfiguration {
+export interface IFolderConfiguration {
   generated: string,
   removal: string
   extension: (ext: string) => string

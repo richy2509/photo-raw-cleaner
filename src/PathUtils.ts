@@ -70,10 +70,14 @@ export function moveFolder(files: string[], path: string, outputFolder: string):
   Logger.logMinimum(`List of files to move ${files}`);
   files
   .forEach((f: string) => {
-    Logger.logMinimum(`main ==> Check if file already exists in the following folder`);
-    //TODO
-    Logger.logMinimum(`main ==> moving file ${f} to folder : ${outputFolder}`);
-    fs.moveSync(`${path}/${f}`, `${outputFolder}/${f}`);
+    const outputPath = `${outputFolder}/${f}`;
+    if (!fs.existsSync(outputPath)) {
+      const inputPath = `${path}/${f}`;
+      Logger.logMinimum(`main ==> moving file ${inputPath} to output path : ${outputPath}`);
+      fs.moveSync(inputPath, outputPath);
+    } else {
+      Logger.logMinimum(`main ==> File already exists in the following path ${outputPath}`);
+    }
   });
 }
 
