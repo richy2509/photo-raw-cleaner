@@ -1,7 +1,5 @@
 import * as fs from "fs-extra";
-// @ts-ignore
 import * as StringUtils from "../StringUtils"
-// @ts-ignore
 import { moveFolder, replaceExtension } from "../PathUtils"
 
 export default class PhotoRawComponent {
