@@ -1,11 +1,11 @@
 import {Command} from "commander";
 
 export interface ICommand extends Command {
-  destination: ICommandOption,
-  extension: ICommandOption,
-  raw: ICommandOption,
-  folder: ICommandOption,
-  debugLevel: ICommandOption
+  destination?: ICommandOption,
+  extension?: ICommandOption,
+  raw?: ICommandOption,
+  folder?: IFolderConfiguration,
+  debugLevel?: ICommandOption
 }
 
 export interface ICommandOption {
@@ -13,11 +13,11 @@ export interface ICommandOption {
   name: string,
   value: string,
   format?: (ext) => string,
-  extName?: (ext) => string
+  extName?: string
 }
 
 export interface IFolderConfiguration {
   generated: string,
   removal: string
-  extension: (ext: string) => string
+  keeping: (ext: string) => string
 }

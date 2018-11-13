@@ -1,11 +1,11 @@
 import {extractExtensionName, formatExtension, formatPath} from "./PathUtils";
 import * as program from 'commander';
-import {Command} from 'commander';
+import {ICommand} from "./interfaces/Configuration";
 
 const REGEX_RAW_FORMAT = /^(\.3fr|\.ari|\.arw|\.bay|\.crw|\.cr2|\.cr3|\.cap|\.data|\.dcs|\.dcr|\.dng|\.drf|\.eip|\.erf|\.fff|\.gpr|\.iiq|\.k25|\.kdc|\.mdc|\.mef|\.mos|\.mrw|\.nef|\.nrw|\.obm|\.orf|\.pef|\.ptx|\.pxn|\.r3d|\.raf|\.raw|\.rwl|\.rw2|\.rwz|\.sr2|\.srf|\.srw|\.tif|\.x3f)$/i;
 const REGEX_EXTENSION_FORMAT = /^\.\w{2,4}$/i;
 
-export const commander: Command = program
+export const commander: ICommand = program
 .version('0.1.0')
 .option('-d, --destination <dest>', 'The destination folder', (dest) => {
   return {

@@ -28,7 +28,7 @@ export class EnvironmentHandler {
     createDirIfNot(
         folder.generated,
         folder.removal,
-        folder.extension(commander.extension.extName)
+        folder.keeping(commander.extension.extName)
     );
   }
 

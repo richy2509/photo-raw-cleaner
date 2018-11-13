@@ -27,4 +27,8 @@ photoRawComponent.displayParameters();
 
 photoRawComponent.removeFiles(commander.folder.removal);
 
-photoRawComponent.keepFiles(commander.folder.extension(commander.extension.extName));
+photoRawComponent.keepFiles(
+    commander.folder.keeping(
+        commander.extension.extName
+    )
+);
